@@ -3,58 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iononiwu <iononiwu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 18:10:00 by iononiwu          #+#    #+#             */
-/*   Updat
-ed: 2023/03/18 18:10:04 by iononiwu         ###   ########.fr       */
+/*   Created: 2023/03/19 14:17:52 by coder             #+#    #+#             */
+/*   Updated: 2023/03/19 17:44:20 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "main.h"
 
-int main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
+int	arr_count(char **str_array)
 {
-	char **mybuf;
-	char **str_array;
-	int count;
-	struct s_words *word_arr;
-	int arg = ft_atoi(argv[1]);
+	int	count;
 
-	mybuf = malloc(BUFFER_SIZE);
-	str_array = split_string(mybuf);
 	count = 0;
 	while (str_array[count] != NULL)
 		count++;
-	word_arr = get_wordarr(count, str_array);
-	print_to_words(arg, word_arr, count);
-	printf("\n");
-	free(mybuf);
-	free(word_arr);
-	return (0);
+	return (count);
 }
 
-// int _pow(int x, int y)
-// {
-// 	int temp;
+void	handle_value_printing(int arg, char *ref_dictionary)
+{
+	char			**mybuf;
+	char			**str_array;
+	struct s_words	*word_arr;
 
-// 	temp = x;
-// 	while (y > 1)
-// 	{
-// 		x = x * temp;
-// 		y--;
-// 	}
-// 	return (x);
-// }
+	mybuf = malloc(BUFFER_SIZE);
+	if (mybuf == NULL)
+		exit(-1);
+	str_array = split_string(mybuf, ref_dictionary);
+	if (str_array == NULL)
+	{
+		_putstr("Dict Error\n");
+		return ;
+	}
+	word_arr = get_wordarr(arr_count(str_array), str_array);
+	if (word_arr == NULL)
+		exit(-1);
+	print_to_words((arg), word_arr, arr_count(str_array));
+	_putstr("\n");
+	free(mybuf);
+	free(word_arr);
+}
 
-// int get_int_len(int nbr)
-// {
-// 	int i;
+int	main(int argc __attribute__((unused)), char **argv __attribute__((unused)))
+{
+	int	arg;
 
-// 	i = 0;
-// 	while (nbr / 10 != 0)
-// 	{
-// 		nbr = nbr / 10;
-// 		i++;
-// 	}
-// 	return (i);
-// }
+	if (argc == 2)
+	{
+		arg = ft_atoi(argv[1]);
+		handle_value_printing(arg, "numbers.dict");
+	}
+	else if (argc == 3)
+	{
+		arg = ft_atoi(argv[2]);
+		handle_value_printing(arg, argv[1]);
+	}
+	return (0);
+}

@@ -3,12 +3,14 @@
 void print_hundred_thousands(int count, int arg, struct s_words *wordarr)
 {
 	print_to_words(arg / 1000, wordarr, count);
-	printf(" ");
-	printf("%s ", find_in_dictionary(count, 1000, wordarr));
+	_putstr(" ");
+	_putstr(find_in_dictionary(count, 1000, wordarr));
 	if (arg % 100000 != 0)
 	{
-		if ((arg % 100000) < 100)
-			printf("and ");
+		if ((arg % 1000) < 100)
+			_putstr(" and ");
+		else
+			_putstr(" ");
 		print_to_words((arg % 1000), wordarr, count);
 	}
 }
@@ -16,12 +18,14 @@ void print_hundred_thousands(int count, int arg, struct s_words *wordarr)
 void print_millions(int count, int arg, struct s_words *wordarr)
 {
 	print_to_words(arg / 1000000, wordarr, count);
-	printf(" ");
-	printf("%s ", find_in_dictionary(count, 1000000, wordarr));
+	_putstr(" ");
+	_putstr(find_in_dictionary(count, 1000000, wordarr));
 	if (arg % 1000000 != 0)
 	{
 		if ((arg % 1000000) < 100)
-			printf("and ");
+			_putstr(" and ");
+		else
+			_putstr(" ");
 		print_to_words((arg % 1000000), wordarr, count);
 	}
 }
@@ -29,12 +33,12 @@ void print_millions(int count, int arg, struct s_words *wordarr)
 void print_billions(int count, int arg, struct s_words *wordarr)
 {
 	print_to_words(arg / 1000000000, wordarr, count);
-	printf(" ");
-	printf("%s ", find_in_dictionary(count, 1000000000, wordarr));
+	_putstr(" ");
+	_putstr(find_in_dictionary(count, 1000000000, wordarr));
 	if (arg % 1000000 != 0)
 	{
 		if ((arg % 1000000000) < 100)
-			printf("and ");
+			_putstr("and ");
 		print_to_words((arg % 1000000000), wordarr, count);
 	}
 }

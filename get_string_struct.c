@@ -6,11 +6,13 @@ struct s_words *get_wordarr(int count, char **str_array)
 	int i;
 
 	i = 0;
-	word_arr = malloc(sizeof(struct s_words) * count + 1);
+	word_arr = malloc(sizeof(struct s_words) * count + 10);
+	if(word_arr == NULL)
+		exit(-1);
 	while (i < count)
 	{
 		word_arr[i].key = ft_atoi(strtok((str_array[i]), ":"));
-		word_arr[i].value = trim_spaces(strtok(NULL, ":"));
+		word_arr[i].value =	trim_spaces(strtok(NULL, ":"));
 		i++;
 	}
 	return (word_arr);

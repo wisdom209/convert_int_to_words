@@ -18,7 +18,7 @@ struct s_words
 
 int _strlen(char *str);
 char *trim_spaces(char *str);
-char **split_string(char **str_array);
+char **split_string(char **str_array, char *ref_dict);
 char *find_in_dictionary(int count, int arg, struct s_words *word_arr);
 int _pow(int x, int y);
 int get_int_len(int nbr);
@@ -36,4 +36,8 @@ void print_hundred_thousands(int count, int arg, struct s_words *wordarr);
 void print_millions(int count, int arg, struct s_words *wordarr);
 void print_billions(int count, int arg, struct s_words *wordarr);
 struct s_words *get_wordarr(int count, char **str_array);
+void _putstr(char *str);
+int arr_count(char **str_array);
+void handle_value_printing(int arg, char *ref_dict);
+int contains_delimiter(char *str);
 #endif
