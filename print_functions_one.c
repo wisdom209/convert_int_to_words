@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_functions_one.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bbarney <bbarney@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/19 16:46:38 by bbarney           #+#    #+#             */
+/*   Updated: 2023/03/19 16:47:45 by bbarney          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
-void print_first_nineteen(int count, int arg, struct s_words *wordarr)
+void	print_first_nineteen(int count, int arg, struct s_words *wordarr)
 {
 	char	*str;
-	
+
 	str = find_in_dictionary(count, arg, wordarr);
 	_putstr(str);
 }
 
-void print_tens(int count, int arg, struct s_words *wordarr)
+void	print_tens(int count, int arg, struct s_words *wordarr)
 {
 	_putstr(find_in_dictionary(count, arg - (arg % 10), wordarr));
 	if (arg % 10 != 0)
@@ -18,7 +30,7 @@ void print_tens(int count, int arg, struct s_words *wordarr)
 	}
 }
 
-void print_hundreds(int count, int arg, struct s_words *wordarr)
+void	print_hundreds(int count, int arg, struct s_words *wordarr)
 {
 	_putstr(find_in_dictionary(count, (arg - (arg % 100)) / 100, wordarr));
 	_putstr(" ");
@@ -33,7 +45,7 @@ void print_hundreds(int count, int arg, struct s_words *wordarr)
 	}
 }
 
-void print_thousands(int count, int arg, struct s_words *wordarr)
+void	print_thousands(int count, int arg, struct s_words *wordarr)
 {
 	_putstr(find_in_dictionary(count, (arg - (arg % 1000)) / 1000, wordarr));
 	_putstr(" ");
@@ -48,7 +60,7 @@ void print_thousands(int count, int arg, struct s_words *wordarr)
 	}
 }
 
-void print_ten_thousands(int count, int arg, struct s_words *wordarr)
+void	print_ten_thousands(int count, int arg, struct s_words *wordarr)
 {
 	print_to_words(arg / 1000, wordarr, count);
 	_putstr(" ");
